@@ -1,0 +1,4 @@
+./builder/
+./test
+.git/
+./docker-compose.yaml

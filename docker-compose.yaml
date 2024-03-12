@@ -1,0 +1,20 @@
+version: '3.8'
+services:
+  redis:
+    image: redis/redis-stack-server:latest
+    container_name: redis-giropops
+    restart: always
+    # network_mode: "host"
+    ports:
+      - "6379:6379"
+  giropops_web:
+    image: docker.io/aoliveiraa/linuxtips-giropops-senhas:0.1
+    container_name: giropops-senhas
+    restart: always
+    # network_mode: "host"
+    depends_on:
+      - redis
+    ports:
+    - "8080:5000"
+    environment:
+        REDIS_HOST: "redis-giropops"
